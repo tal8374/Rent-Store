@@ -1,0 +1,35 @@
+<form #f="ngForm">
+  <div class="col form-group inputWithIcon">
+    <label for="number">Enter the car number to return</label>
+    <input
+      style="padding-left: 55px"
+      id="number"
+      #number="ngModel"
+      name="number"
+      [(ngModel)]="searchCarForm.number"
+      type=number
+      class="form-control"
+      required>
+    <i class="fa fa-car fa-2x" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+    <div class="alert alert-danger" *ngIf="number.touched && number.invalid">
+      <div *ngIf="number.errors.required">Car number is required.</div>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="showNotFoundCar">
+    <h4 style="color: red">
+      <i class="fa fa-car fa-1x" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+      Car number is required.
+    </h4>
+  </div>
+
+  <div class="col">
+    <button
+      [disabled]="!f.valid"
+      (click)="onSearchCar()"
+      class="btn btn-secondary btn-block">
+      <i class="fa fa-sign-in fa-2x" aria-hidden="true" style="left: -34px; top: 25px;"></i>
+      Search car
+    </button>
+  </div>
+</form>

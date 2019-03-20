@@ -1,0 +1,11 @@
+<div class="card container" style="margin-top: 20px">
+  <div class="card-header">
+    <h2 style="text-align: center">
+      Car Management
+    </h2>
+  </div>
+  <div class="card-body" style="text-align: center">
+    <car-management-search-car (onSearchCarChange)="onSearchCarChange($event)"></car-management-search-car>
+    <car-return-summary *ngIf="car" [car]="car"></car-return-summary>
+  </div>
+</div>

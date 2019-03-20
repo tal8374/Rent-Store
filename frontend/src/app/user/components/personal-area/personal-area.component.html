@@ -1,0 +1,158 @@
+<div *ngIf="user" class="card container" style="margin-top: 20px">
+  <div class="card-header" style="width: 1140px; margin-left: -16px">
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div>
+          <div class="row">
+            <div class="col-md-5">
+              <img class="card-img-top" [src]="user.image"
+                   style="height: 120px; width: 120px; border-radius: 100%">
+            </div>
+            <div class="col-md-7" style="margin-top: 25px">
+              <p>{{ user.firstName }} {{ user.lastName }}</p>
+              <p>{{ user.email }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
+  </div>
+  <div class="card-body" style="text-align: center">
+    <form #f="ngForm">
+      <div class="form-group">
+
+        <div class="row">
+          <div class="col mid-6 inputWithIcon">
+            <label for="email">Email</label>
+            <input id="email" #email="ngModel" name="email" [(ngModel)]="user.email" type="text"
+                   class="form-control" [readonly]="!isUpdating"
+                   required>
+            <i class="fa fa-envelope fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+              <div *ngIf="email.errors.required">Email is required.</div>
+            </div>
+          </div>
+          <div class="col mid-6 inputWithIcon">
+            <label for="password">Password</label>
+            <input id="password" #password="ngModel" name="password" [(ngModel)]="user.password"
+                   type="password" class="form-control" [readonly]="!isUpdating"
+                   required>
+            <i class="fa fa-key fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+              <div *ngIf="password.errors.required">password is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col mid-6 inputWithIcon">
+            <label for="firstName">First name</label>
+            <input id="firstName" #firstName="ngModel" name="firstName"
+                   [(ngModel)]="user.firstName"
+                   type="text" class="form-control" [readonly]="!isUpdating"
+                   required>
+            <i class="fa fa-user fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+              <div *ngIf="firstName.errors.required">First name is required.</div>
+            </div>
+          </div>
+          <div class="col mid-6 inputWithIcon">
+            <label for="lastName">Last name</label>
+            <input id="lastName" #lastName="ngModel" name="lastName" [(ngModel)]="user.lastName"
+                   type="text" [readonly]="!isUpdating"
+                   class="form-control"
+                   required>
+            <i class="fa fa-user-o fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
+              <div *ngIf="lastName.errors.required">Last name is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col mid-6 inputWithIcon">
+            <label for="id">ID</label>
+            <input id="id" #id="ngModel" name="id" [(ngModel)]="user.ID" type="text"
+                   class="form-control" [readonly]="!isUpdating"
+                   required>
+            <i class="fa fa-address-card fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="id.touched && id.invalid">
+              <div *ngIf="id.errors.required">ID is required.</div>
+            </div>
+          </div>
+          <div class="col mid-6 inputWithIcon">
+            <label for="dateOfBirth">Birth Date</label>
+            <input id="dateOfBirth"
+                   #dateOfBirth="ngModel"
+                   name="dateOfBirth"
+                   [ngModel]="user.dateOfBirth | date:'yyyy-MM-dd'"
+                   (ngModelChange)="user.dateOfBirth = $event"
+                   type="date"
+                   class="form-control"
+                   [readonly]="!isUpdating"
+                   required>
+            <i class="fa fa-calendar-check-o fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="dateOfBirth.touched && dateOfBirth.invalid">
+              <div *ngIf="dateOfBirth.errors.required">Birth date is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col mid-6 inputWithIcon">
+            <label for="sex">Sex</label>
+            <select #sex="ngModel" name="sex" [(ngModel)]="user.sex" id="sex" #sex
+                    class="select" [disabled]="!isUpdating"
+                    style="width: 520px; height: 35px; text-align-last:center;">
+              <option>Female</option>
+              <option>Male</option>
+            </select>
+            <i class="fa fa-venus-mars fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+          </div>
+          <div class="col mid-6 inputWithIcon">
+            <label for="image">Image</label>
+            <input id="image" #image="ngModel" name="image" [(ngModel)]="user.image"
+                   type="text" class="form-control" [readonly]="!isUpdating"
+                   required>
+            <i class="fa fa-file-image-o fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="image.touched && image.invalid">
+              <div *ngIf="image.errors.required">Image is required.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button *ngIf="!isUpdating"
+              (click)="toggleUpdatingState()"
+              class="btn btn-secondary btn-block">
+        <i class="fa fa-user-circle fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+        Start updating personal data
+      </button>
+
+      <div class="row">
+        <div class="col-6">
+          <button *ngIf="isUpdating"
+                  (click)="onUpdateClicked()"
+                  [disabled]="!f.valid"
+                  class="btn btn-success btn-block">
+            <i class="fa fa-user-circle fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            Update personal data
+          </button>
+        </div>
+        <div class="col-6">
+          <button *ngIf="isUpdating"
+                  (click)="toggleUpdatingState()"
+                  class="btn btn-danger btn-block">
+            <i class="fa fa-spinner fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            Cancel updating personal data
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

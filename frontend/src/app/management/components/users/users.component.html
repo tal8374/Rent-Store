@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-11">
+    <div class="card container" style="margin-top: 20px">
+      <div class="card-header">
+        <h2 style="text-align: center">Users management</h2>
+      </div>
+      <div class="card-body" style="text-align: center">
+
+        <div *ngFor="let user of users; let i = index;">
+          <management-users-user [user]="user"></management-users-user>
+
+          <hr>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="col-1">
+    <management-options></management-options>
+  </div>
+</div>

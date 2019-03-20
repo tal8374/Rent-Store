@@ -1,0 +1,42 @@
+<div class="card container" style="margin-top: 20px">
+  <div class="card-header">
+    <h2 style="text-align: center">
+      Login
+    </h2>
+  </div>
+  <div class="card-body" style="text-align: center">
+    <form #f="ngForm">
+      <div class="col form-group inputWithIcon">
+        <label for="userName">Email</label>
+        <input id="userName" #email="ngModel" name="email" [(ngModel)]="loginDetail.email" type="text"
+               class="form-control" required>
+        <i class="fa fa-user-circle fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+        <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+          <div *ngIf="email.errors.required">Email is required.</div>
+        </div>
+      </div>
+      <div class="col form-group inputWithIcon">
+        <label for="password">Password</label>
+        <input id="password" #password="ngModel" name="password" [(ngModel)]="loginDetail.password"
+               type="password" class="form-control" required>
+        <i class="fa fa-key fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+        <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+          <div *ngIf="password.errors.required">Password is required.</div>
+        </div>
+      </div>
+      <div class="col">
+        <button
+          [disabled]="!f.valid"
+          (click)="onLoginClicked()"
+          class="btn btn-secondary btn-block">
+          <i class="fa fa-sign-in fa-2x" aria-hidden="true" style="left: -34px; top: 25px;"></i>
+          Login
+        </button>
+        <div class="alert alert-danger" *ngIf="isErrorExist()">
+          <i class="fa fa-warning fa-lg" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+          {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

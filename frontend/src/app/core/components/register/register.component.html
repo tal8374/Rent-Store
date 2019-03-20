@@ -1,0 +1,129 @@
+<div class="card container" style="margin-top: 20px">
+  <div class="card-header">
+    <h2 style="text-align: center">
+      Register
+    </h2>
+  </div>
+  <div class="card-body" style="text-align: center">
+    <form #f="ngForm">
+      <div class="form-group">
+        <div class="row">
+          <div class="col mid-6 inputWithIcon">
+            <label for="userName">User Name</label>
+            <input id="userName" #userName="ngModel" name="userName" [(ngModel)]="registeredUser.userName"
+                   type="text"
+                   class="form-control"
+                   required>
+            <i class="fa fa-user-circle fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="userName.touched && userName.invalid">
+              <div *ngIf="userName.errors.required">User name is required.</div>
+            </div>
+          </div>
+          <div class="col mid-6 inputWithIcon">
+            <label for="password">Password</label>
+            <input id="password" #password="ngModel" name="password" [(ngModel)]="registeredUser.password"
+                   type="password" class="form-control"
+                   required>
+            <i class="fa fa-key fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+              <div *ngIf="password.errors.required">password is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col mid-6 inputWithIcon">
+            <label for="firstName">First name</label>
+            <input id="firstName" #firstName="ngModel" name="firstName"
+                   [(ngModel)]="registeredUser.firstName"
+                   type="text" class="form-control"
+                   required>
+            <i class="fa fa-user fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+              <div *ngIf="firstName.errors.required">First name is required.</div>
+            </div>
+          </div>
+          <div class="col mid-6 inputWithIcon">
+            <label for="lastName">Last name</label>
+            <input id="lastName" #lastName="ngModel" name="lastName" [(ngModel)]="registeredUser.lastName"
+                   type="text"
+                   class="form-control"
+                   required>
+            <i class="fa fa-user-o fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
+              <div *ngIf="lastName.errors.required">Last name is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col mid-6 inputWithIcon">
+            <label for="id">ID</label>
+            <input id="id" #id="ngModel" name="id" [(ngModel)]="registeredUser.id" type="text"
+                   class="form-control"
+                   required>
+            <i class="fa fa-address-card fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="id.touched && id.invalid">
+              <div *ngIf="id.errors.required">ID is required.</div>
+            </div>
+          </div>
+          <div class="col mid-6 inputWithIcon">
+            <label for="birthDate">Birth Date</label>
+            <input id="birthDate" #birthDate="ngModel" name="birthDate"
+                   [(ngModel)]="registeredUser.dateOfBirth"
+                   type="date" class="form-control">
+            <i class="fa fa-calendar-check-o fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col mid-6 inputWithIcon">
+            <label for="sex">Sex</label>
+            <select #sex="ngModel" name="sex" [(ngModel)]="registeredUser.sex" id="sex" #sex
+                    class="select"
+                    style="width: 520px; height: 35px; text-align-last:center;"
+                    required>
+              <option>female</option>
+              <option>male</option>
+            </select>
+            <i class="fa fa-venus-mars fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="sex.touched && sex.invalid">
+              <div *ngIf="sex.errors.required">Sex is required.</div>
+            </div>
+          </div>
+          <div class="col mid-6 inputWithIcon">
+            <label for="email">Email</label>
+            <input id="email" #email="ngModel" name="email" [(ngModel)]="registeredUser.email" type="email"
+                   class="form-control"
+                   required>
+            <i class="fa fa-envelope fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+            <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+              <div *ngIf="email.errors.required">Email is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col mid-6 inputWithIcon">
+            <label for="image">Image</label>
+            <input id="image" #image="ngModel" name="image" [(ngModel)]="registeredUser.image"
+                   type="text" class="form-control">
+            <i class="fa fa-file-image-o fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+          </div>
+        </div>
+      </div>
+      <button
+        [disabled]="!f.valid"
+        (click)="onRegisterClicked()"
+        class="btn btn-secondary btn-block">
+        <i class="fa fa-user-circle fa-2x" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+        Register
+      </button>
+      <div class="alert alert-danger" *ngIf="isErrorExist()">
+          <i class="fa fa-warning fa-lg" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+          {{ getErrorMessage() }}
+      </div>
+    </form>
+  </div>
+</div>
+

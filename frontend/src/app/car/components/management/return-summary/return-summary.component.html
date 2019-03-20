@@ -1,0 +1,17 @@
+<form *ngIf="car" #f="ngForm">
+  <h4 style="color: greenyellow">
+    <i class="fa fa-car fa-1x" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+    Car has been found
+  </h4>
+
+  <h4>totalSum: {{ getTotalSum() }}</h4>
+
+  <div class="col">
+    <button
+      (click)="onReturnCarClicked()"
+      class="btn btn-secondary btn-block">
+      <i class="fa fa-sign-in fa-2x" aria-hidden="true" style="left: -34px; top: 25px;"></i>
+      Return car
+    </button>
+  </div>
+</form>

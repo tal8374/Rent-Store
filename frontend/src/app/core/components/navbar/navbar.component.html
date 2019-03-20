@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/"><img src="../../../../assets/images/logo.png" style="height: 60px; border-radius: 20px"/></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 18px">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Main</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/search">Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/contact">Contact</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <ul class="navbar-nav mr-auto" style="">
+        <li  class="nav-item dropdown">
+          <a *ngIf="user" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+             style="padding-left: 100px"
+             aria-haspopup="true" aria-expanded="false">
+            <img  style="margin-right: 5px" class="card-img-top" [src]="user.image" style="border-radius: 100%; height: 50px; width: 50px">
+            {{ user.firstName }}
+          </a>
+          <div *ngIf="user" class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/personal-area">My Area</a>
+            <a class="dropdown-item" routerLink="/user-orders">My Orders</a>
+            <a class="dropdown-item" routerLink="/car-management">Cars Management</a>
+            <a class="dropdown-item" routerLink="/management-area/cars">Management Area</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/" (click)="logout()">Logout</a>
+          </div>
+        </li>
+        <li *ngIf="!user" class="nav-item active">
+          <a class="nav-link" routerLink="/login">Login <span class="sr-only">(current)</span><i class="fa fa-sign-in"
+                                                                                                 aria-hidden="true"></i></a>
+        </li>
+        <li *ngIf="!user" class="nav-item">
+          <a class="nav-link disabled" href="#"> \ </a>
+        </li>
+        <li *ngIf="!user" class="nav-item active">
+          <a class="nav-link" routerLink="/register">Register <span class="sr-only">(current)</span><i
+            class="fa fa-user-plus" aria-hidden="true"></i></a>
+        </li>
+      </ul>
+    </form>
+  </div>
+</nav>

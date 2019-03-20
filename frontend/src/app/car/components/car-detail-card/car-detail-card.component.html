@@ -1,0 +1,36 @@
+
+
+  <div class="card" style="margin-top: 20px">
+    <div class="row">
+      <div class="col-md-6">
+        <img *ngIf="car.image" class="card-img-top" [src]="car.image" alt="{{ car.name }}">
+      </div>
+      <div class="col-md-6">
+        <div class="card-header" style="width: 490px; margin-left: -30px">
+          <h2 style="text-align: center">
+            {{ car.name }}
+          </h2>
+        </div>
+
+        <div class="card-body" style="text-align: center">
+          <p class="card-text">Car type: {{ car.type }}</p>
+          <p class="card-text">Manufacture year: {{ car.creationYear }}</p>
+          <p class="card-text">Car number: {{ car.number }}</p>
+          <p class="card-text">Gear: {{ car.gear }}</p>
+          <p *ngIf="branch && branch.name" class="card-text">Branch: {{ branch.name }}</p>
+          <p class="card-text">Current kilometers: {{ car.mileage }}</p>
+          <p class="card-text">is available for rent:
+            <i *ngIf="car.isAvailableForRent" class="fa fa-check-circle green-text" aria-hidden="true"></i>
+            <i *ngIf="!car.isAvailableForRent" class="fa fa-close green-text" aria-hidden="true"></i>
+          </p>
+          <p class="card-text">is proper for rent:
+            is proper for rent:
+            <i *ngIf="car.isProperForRent" class="fa fa-check-circle green-text" aria-hidden="true"></i>
+            <i *ngIf="!car.isProperForRent" class="fa fa-close green-text" aria-hidden="true"></i>
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>

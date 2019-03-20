@@ -1,0 +1,127 @@
+<form #f="ngForm">
+  <div class="form-group">
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <img class="card-img-top" src="{{user.image}}"
+             style="height: 150px; width: 150px">
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
+    <div class="row">
+      <div class="col mid-6 inputWithIcon">
+        <label for="userName">User Name</label>
+        <input id="userName" #userName="ngModel" name="userName" [(ngModel)]="user.userName"
+               type="text"
+               class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="userName.touched && userName.invalid">
+          <div *ngIf="userName.errors.required">User name is required.</div>
+        </div>
+      </div>
+      <div class="col mid-6 inputWithIcon">
+        <label for="password">Password</label>
+        <input id="password" #password="ngModel" name="password" [(ngModel)]="user.password"
+               type="password" class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+          <div *ngIf="password.errors.required">password is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+      <div class="col mid-6 inputWithIcon">
+        <label for="firstName">First name</label>
+        <input id="firstName" #firstName="ngModel" name="firstName"
+               [(ngModel)]="user.firstName"
+               type="text" class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+          <div *ngIf="firstName.errors.required">First name is required.</div>
+        </div>
+      </div>
+      <div class="col mid-6 inputWithIcon">
+        <label for="lastName">Last name</label>
+        <input id="lastName" #lastName="ngModel" name="lastName" [(ngModel)]="user.lastName"
+               type="text"
+               class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
+          <div *ngIf="lastName.errors.required">Last name is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+      <div class="col mid-6 inputWithIcon">
+        <label for="id">ID</label>
+        <input id="id" #id="ngModel" name="id" [(ngModel)]="user.id" type="text"
+               class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="id.touched && id.invalid">
+          <div *ngIf="id.errors.required">ID is required.</div>
+        </div>
+      </div>
+      <div class="col mid-6 inputWithIcon">
+        <label for="birthDate">Birth Date</label>
+        <input id="birthDate" #birthDate="ngModel" name="birthDate"
+               [(ngModel)]="user.dateOfBirth"
+               type="date" class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="birthDate.touched && birthDate.invalid">
+          <div *ngIf="birthDate.errors.required">Birth date is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+      <div class="col mid-6 inputWithIcon">
+        <label for="sex">Sex</label>
+        <select #sex="ngModel" name="sex" [(ngModel)]="user.sex" id="sex" #type
+                class="select"
+                style="width: 520px; height: 35px; text-align-last:center;">
+          <option [ngValue]="sexOption[0]">Female</option>
+          <option [ngValue]="sexOption[1]">Male</option>
+        </select>
+      </div>
+      <div class="col mid-6 inputWithIcon">
+        <label for="email">Email</label>
+        <input id="email" #email="ngModel" name="email" [(ngModel)]="user.email" type="text"
+               class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+          <div *ngIf="email.errors.required">Email is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+      <div class="col mid-6 inputWithIcon">
+        <label for="picture">Picture</label>
+        <input id="picture" #picture="ngModel" name="picture" [(ngModel)]="user.image"
+               type="text" class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="picture.touched && picture.invalid">
+          <div *ngIf="picture.errors.required">Picture is required.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button
+    (click)="onUpdateClicked(user)"
+    class="btn btn-secondary btn-block">
+    <i class="fa fa-user-circle fa-2x" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+    Update personal data
+  </button>
+
+  <button
+    (click)="onRemoveClicked(user)"
+    class="btn btn-danger btn-block">
+    <i class="fa fa-remove fa-2x" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+    Remove user
+  </button>
+</form>

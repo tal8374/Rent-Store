@@ -1,0 +1,64 @@
+<form #f="ngForm">
+  <div class="form-group">
+
+    <div class="row" style="margin-top: 10px">
+      <div class="col mid-6 inputWithIcon">
+        <label for="number">Car number</label>
+        <input id="number" #number="ngModel" name="number"
+               [(ngModel)]="order.orderDetails.carNumber"
+               type="number" class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="number.touched && number.invalid">
+          <div *ngIf="number.errors.required">Car number is required.</div>
+        </div>
+      </div>
+      <div class="col mid-6 inputWithIcon">
+        <label for="totalSum">Car number</label>
+        <input id="totalSum" #totalSum="ngModel" name="totalSum" [(ngModel)]="order.orderDetails.totalSum"
+               type="text"
+               class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="totalSum.touched && totalSum.invalid">
+          <div *ngIf="totalSum.errors.required">Car number is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+      <div class="col mid-6 inputWithIcon">
+        <label for="beginningRent">Beginning rent date</label>
+        <input id="beginningRent" #beginningRent="ngModel" name="beginningRent"
+               [(ngModel)]="order.orderDetails.beginningRentDate"
+               type="date" class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="beginningRent.touched && beginningRent.invalid">
+          <div *ngIf="beginningRent.errors.required">Beginning rent date is required.</div>
+        </div>
+      </div>
+      <div class="col mid-6 inputWithIcon">
+        <label for="endRent">End rent date</label>
+        <input id="endRent" #endRent="ngModel" name="endRent"
+               [(ngModel)]="order.orderDetails.endRentDate"
+               type="date" class="form-control"
+               required>
+        <div class="alert alert-danger" *ngIf="endRent.touched && endRent.invalid">
+          <div *ngIf="endRent.errors.required">End rent date is required.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button
+    (click)="onUpdateClicked()"
+    class="btn btn-secondary btn-block">
+    <i class="fa fa-user-circle fa-2x" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+    Update order data
+  </button>
+
+  <button
+    (click)="onRemoveClicked()"
+    class="btn btn-danger btn-block">
+    <i class="fa fa-remove fa-2x" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+    Remove order
+  </button>
+</form>

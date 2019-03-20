@@ -1,0 +1,15 @@
+<div *ngIf="isExistsCars()">
+  <ng-container *ngFor="let car of userFilteredCars; let i = index">
+    <div style="margin-left: 15px" class="col-md-11">
+      <car-detail-card [car]="car"> </car-detail-card>
+    </div>
+    <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="!isExistsCars()">
+    <h1 style="text-align: center; color: red">
+      No found cars
+      <i class="fa fa-question-circle-o fa-md fa-fw" aria-hidden="true" style="margin-top: 37px"></i>
+    </h1>
+</ng-container>

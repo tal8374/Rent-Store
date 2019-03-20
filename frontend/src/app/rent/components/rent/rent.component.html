@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-11">
+    <div class="card container" style="margin-top: 20px">
+      <div class="card-header">
+        <h2 style="text-align: center">
+          Rent Details
+        </h2>
+      </div>
+      <div class="card-body" style="text-align: center">
+        <form #f="ngForm">
+          <div class="form-group">
+            <div class="row" style="margin-top: 10px">
+              <div class="col mid-6 inputWithIcon">
+                <label for="beginningRentDate">Beginning rent date</label>
+                <input id="beginningRentDate" #beginningRentDate="ngModel" name="beginningRentDate"
+                       [(ngModel)]="rentForm.beginningRentDate"
+                       type="date" class="form-control"
+                       required>
+                <i class="fa fa-calendar-check-o fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+                <div class="alert alert-danger" *ngIf="beginningRentDate.touched && beginningRentDate.invalid">
+                  <div *ngIf="beginningRentDate.errors.required">Beginning date is required.</div>
+                </div>
+              </div>
+              <div class="col mid-6 inputWithIcon">
+                <label for="endOfRentDate">End of rent Date</label>
+                <input id="endOfRentDate" #endOfRentDate="ngModel" name="endOfRentDate"
+                       [(ngModel)]="rentForm.endOfRentDate"
+                       type="date" class="form-control"
+                       required>
+                <i class="fa fa-calendar-check-o fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+                <div class="alert alert-danger" *ngIf="endOfRentDate.touched && endOfRentDate.invalid">
+                  <div *ngIf="endOfRentDate.errors.required">End of rent Date is required.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <car-rent-available-data *ngIf="beginningRentDate.touched && beginningRentDate.valid && endOfRentDate.touched &&
+           endOfRentDate.valid && isAvailableForRent() && areLegalDates()" [car]="car" [rentForm]="rentForm"></car-rent-available-data>
+
+          <button
+            [disabled]="!f.valid || !areLegalDates() || !isAvailableForRent()"
+            (click)="onRentClicked()"
+            class="btn btn-secondary btn-block">
+            <i class="fa fa-shopping-cart fa-lg" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+            Make a Rent
+          </button>
+
+          <div class="alert alert-danger" *ngIf="beginningRentDate.touched && beginningRentDate.valid && endOfRentDate.touched &&
+           endOfRentDate.valid && !areLegalDates()">
+            <div>Beginning date should be before returning date.</div>
+          </div>
+
+          <div class="alert alert-danger" *ngIf="!isAvailableForRent()">
+            <div>The car is already rented in those days.</div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-1">
+    <rent-options></rent-options>
+  </div>
+</div>

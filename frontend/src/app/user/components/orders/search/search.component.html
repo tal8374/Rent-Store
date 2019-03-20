@@ -1,0 +1,36 @@
+<form #f="ngForm">
+  <div class="form-group">
+    <div class="row" style="margin-top: 10px">
+      <div class="col mid-6 inputWithIcon">
+        <label for="orderStatus">Order status</label>
+        <select
+          (change)="onOrderStatusChange(orderStatus.value)"
+          #orderStatus="ngModel"
+          name="orderStatus"
+          [(ngModel)]="searchCarDetail.order.status"
+          id="orderStatus"
+          #orderStatus
+          class="select"
+          style="width: 520px; height: 35px; text-align-last:center;"
+          required>
+          <option *ngFor="let orderStatus of getOrderStatuses()">{{ orderStatus }}</option>
+        </select>
+        <i class="fa fa-info fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+      </div>
+      <div class="col mid-6 inputWithIcon">
+        <label for="carNumber">Car number</label>
+        <input
+          (keyup)="onCarNumberChange(carNumber.value)"
+          style=" padding-left: 55px"
+          #carNumber="ngModel"
+          id="carNumber"
+          name="carNumber"
+          [(ngModel)]="searchCarDetail.order.car.number"
+          type="number"
+          class="form-control"
+          required>
+        <i class="fa fa-car fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+      </div>
+    </div>
+  </div>
+</form>

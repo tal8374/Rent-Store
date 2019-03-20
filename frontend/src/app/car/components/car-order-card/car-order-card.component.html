@@ -1,0 +1,27 @@
+<div class="card" style="margin-top: 20px">
+  <div class="row">
+      <div class="col-md-6">
+        <img *ngIf="car.image" class="card-img-top" [src]="car.image" alt="{{ car.name }}"
+             style="height: 350px">
+      </div>
+      <div class="col-md-6">
+        <div class="card-header" style="width: 387px; margin-left: -29px">
+          <h2 style="text-align: center">
+            {{ car.name }}
+          </h2>
+        </div>
+        <div class="card-body" style="text-align: center">
+          <p class="card-text">Car type: {{ car.type }}</p>
+          <p class="card-text">Manufacture year: {{ car.creationYear }}</p>
+          <p class="card-text">Car number: {{ car.number }}</p>
+          <p class="card-text">Gear: {{ car.gear }}</p>
+          <p *ngIf="branch && branch.name" class="card-text">Branch: {{ branch.name }}</p>
+        </div>
+        <button
+          style="margin-left: -15px"
+          (click)="onBuyCarClicked()"
+          class="btn btn-secondary btn-block">Order car
+        </button>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,148 @@
+<div class="row">
+  <div class="col-11">
+    <div *ngFor="let car of cars" class="card container" style="margin-top: 20px">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-2">
+            <img class="card-img-top" [src]="car.image"
+                 style="height: 120px; width: 120px; border-radius: 100%">
+          </div>
+          <div class="col-md-10">
+            <p>{{ car.name }}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="car" class="card-body" style="text-align: center">
+        <form #f="ngForm">
+          <div class="form-group">
+
+            <div class="row">
+              <div class="col-4">
+                <label for="name">Car name</label>
+                <input
+                  [(ngModel)]="car.name"
+                  #name
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Car name"
+                  style="width: 300px;">
+              </div>
+              <div class="col-4">
+                <label for="number">Car number</label>
+                <input
+                  [(ngModel)]="car.number"
+                  #number
+                  type="number"
+                  name="number"
+                  id="number"
+                  placeholder="Car number"
+                  style="width: 300px;">
+              </div>
+              <div class="col-4">
+                <label for="type">Car types</label>
+                <select
+                  id="type"
+                  [(ngModel)]="car.type"
+                  name="type"
+                  #type
+                  class="select"
+                  style="width: 300px; text-align-last:center; margin: 0 0 10px 0; height: 30px">
+                  <option *ngFor="let type of getCarTypes()" [ngValue]="type">{{ type}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-4">
+                <label for="manufactureYear">Manufacture year</label>
+                <input
+                  [value]="car.creationYear"
+                  #manufactureYear
+                  type="date"
+                  name="manufactureYear"
+                  id="manufactureYear"
+                  placeholder="Manufacture year"
+                  style="width: 300px;">
+              </div>
+              <div class="col-4">
+                <label for="gear">Car gear</label>
+                <select
+                  id="gear"
+                  [(ngModel)]="car.gear"
+                  name="gear"
+                  #gear
+                  class="select"
+                  style="width: 300px; text-align-last:center; margin: 0 0 10px 0; height: 30px">
+                  <option *ngFor="let gear of getCarGearOptions()" [value]="gear">{{ gear}}</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <label for="branch">Branch</label>
+                <input
+                  [value]="car.branch"
+                  #branch
+                  type="text"
+                  name="branch"
+                  id="branch"
+                  placeholder="Branch"
+                  style="width: 300px;">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-4">
+                <label for="currentKilometers">Current kilometers</label>
+                <input
+                  [value]="car.currentKilometers"
+                  #currentKilometers
+                  type="number"
+                  name="currentKilometers"
+                  id="currentKilometers"
+                  style="width: 300px;">
+              </div>
+              <div class="col-4">
+                <label for="isAvailableForRent">Is available for rent</label>
+                <select
+                  id="isAvailableForRent"
+                  [(ngModel)]="car.isAvailableForRent"
+                  name="isAvailableForRent"
+                  #isAvailableForRent
+                  class="select"
+                  style="width: 300px; text-align-last:center; margin: 0 0 10px 0; height: 30px">
+                  <option *ngFor="let availableOption of getAvailableOptions()"
+                          [value]="availableOption">{{ availableOption}}</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <label for="isProperForRent">Is proper for rent</label>
+                <select
+                  id="isProperForRent"
+                  [(ngModel)]="car.isProperForRent"
+                  name="isProperForRent"
+                  #isProperForRent
+                  class="select"
+                  style="width: 300px; text-align-last:center; margin: 0 0 10px 0; height: 30px">
+                  <option *ngFor="let properOption of getProperOptions()"
+                          [value]="properOption ">{{ properOption }}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <button
+            (click)="onUpdateCarDetailsClicked(car)"
+            class="btn btn-secondary btn-block">
+            <i class="fa fa-edit fa-2x" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+            Update car details
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-1">
+    <management-options></management-options>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-11">
+
+    <div class="card container" style="margin-top: 20px">
+      <div class="card-header">
+        <h2 style="text-align: center">Car types management</h2>
+      </div>
+      <div class="card-body" style="text-align: center">
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-7">
+
+            <div class="row">
+
+              <label for="newCarType" style="margin-right: 15px; margin-top: 6px">New car type</label>
+
+              <input
+                #newCarType
+                type="text"
+                name="newCarType"
+                id="newCarType"
+                placeholder="Car type"
+                style="width: 300px; ">
+
+              <button
+                (click)=" onNewCarTypeClicked(newCarType.value)"
+                class="btn btn-secondary"
+                style="margin-left: 15px">
+                Create new car type
+              </button>
+
+
+            </div>
+
+
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <hr>
+
+        <form #f="ngForm">
+          <div *ngFor="let carType of carTypes; let i = index" class="form-group">
+
+            <label for="carType" style="margin-right: 15px">Car types</label>
+
+            <input
+              [(ngModel)]="carTypes[i]"
+              #carType
+              type="text"
+              name="carType"
+              id="carType"
+              placeholder="Car type"
+              style="width: 300px;">
+
+            <i
+              class="fa fa-close fa-lg fa-fw"
+              aria-hidden="true"
+              style="color: red; cursor: pointer"
+              (click)="onCarTypeRemoveClicked(i)"
+            >
+            </i>
+
+          </div>
+
+          <button
+            (click)=" onUpdateTypesClicked()"
+            class="btn btn-secondary btn-block">
+            <i class="fa fa-edit fa-2x" aria-hidden="true" style="left: 16px; top: 25px;"></i>
+            Update car details
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="col-1">
+    <management-options></management-options>
+  </div>
+</div>

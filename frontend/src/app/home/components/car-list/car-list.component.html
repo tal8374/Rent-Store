@@ -1,0 +1,5 @@
+<div  *ngIf="cars" class="row">
+  <div class="col-5" *ngFor="let car of cars.cars" style="margin-left: 100px">
+    <car-order-card [branch]="branch" [car]="car"></car-order-card>
+  </div>
+</div>

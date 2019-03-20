@@ -1,0 +1,29 @@
+<div *ngIf="orderSummary" class="card" style="margin-top: 20px">
+  <div class="card-header">
+    <h1 style="text-align: center">Rent Details</h1>
+  </div>
+  <div class="card-body">
+    <h2 style="color: greenyellow; text-align: center">
+      The ordered succeeded
+      <i class="fa fa-check fa-lg fa-fw" aria-hidden="true" style="margin-top: 37px"></i>
+    </h2>
+    <div class="row">
+      <div class="col-md-3">
+        <h5 style="margin-bottom: 15px">Order ID: </h5>
+        <h5 style="margin-bottom: 15px">Beginning rent Date: </h5>
+        <h5 style="margin-bottom: 15px">End rent Date: </h5>
+        <h5 style="margin-bottom: 15px">Car number: </h5>
+        <h5>Total sum: </h5>
+      </div>
+      <div class="col-md-7"></div>
+      <div class="col-md-2">
+        <h5 style="margin-bottom: 15px">{{ orderSummary._id }}</h5>
+        <h5 style="margin-bottom: 15px">{{ orderSummary.beginningRentDate }}</h5>
+        <h5 style="margin-bottom: 15px">{{ orderSummary.endRentDate }}</h5>
+        <h5 style="margin-bottom: 15px">{{ orderSummary.carNumber }}</h5>
+        <h5>3123123</h5>
+      </div>
+
+    </div>
+  </div>
+</div>

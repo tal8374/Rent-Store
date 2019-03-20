@@ -1,0 +1,21 @@
+<div class="row" style="margin-top: 15px">
+
+  <div class="col-1"></div>
+
+  <div class="col-8">
+    <div class="row">
+      <ng-container *ngFor="let car of filteredCars; let i = index">
+        <div style="margin-left: 15px" class="col-md-11">
+          <car-order-card [car]="car"></car-order-card>
+        </div>
+        <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="col-2">
+    <car-search (onSearchCarChange)="onSearchChange($event)"></car-search>
+  </div>
+  <div class="col-1"></div>
+</div>
+

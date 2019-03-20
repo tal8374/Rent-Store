@@ -1,0 +1,69 @@
+<div class="sticky-top">
+  <div class="inputWithIcon">
+    <label for="freeSearch" style="color: grey">Free search</label>
+    <input [(ngModel)]="searchCar.freeSearch" #freeSearch (keyup)="onFreeSearchChange(freeSearch.value)" type="text"
+           name="freeSearch" id="freeSearch"
+           placeholder="Free search" style="width: 300px;">
+    <i class="fa fa-search fa-lg fa-fw" aria-hidden="true" style="margin-top: 37px"></i>
+  </div>
+
+  <div class="inputWithIcon">
+    <label for="beginningDate" style="color: grey">Beginning date</label>
+    <input #beginningDate (change)="onBeginningRentDateChange(beginningDate.value)" type="date" name="beginningDate"
+           id="beginningDate" placeholder="Beginning date" style="width: 300px;">
+    <i class="fa fa-calendar fa-lg fa-fw" aria-hidden="true" style="margin-top: 37px"></i>
+  </div>
+
+  <div class="inputWithIcon">
+    <label for="returningDate" style="color: grey">Returning date</label>
+    <input [(ngModel)]="searchCar.returningDate"  #returningDate (change)="onEndRentDateChange(returningDate.value)"
+           type="date" name="returningDate"
+           id="returningDate" placeholder="Returning date" style="width: 300px;">
+    <i class="fa fa-calendar fa-lg fa-fw" aria-hidden="true" style="margin-top: 37px"></i>
+  </div>
+
+  <div class="inputWithIcon">
+    <label style="color: grey">manufacturer</label>
+    <select [(ngModel)]="searchCar.manufacturer"  #manufacturer (change)="onManufacturerChange(manufacturer.value)"
+            class="select"
+            style="width: 300px; text-align-last:center; margin: 0 0 10px 0">
+      <option *ngFor="let manufacturer of getManufacturers()">{{ manufacturer }}</option>
+    </select>
+    <i class="fa fa-industry fa-lg fa-fw" aria-hidden="true" style="margin-top: 32px"></i>
+  </div>
+
+  <div class="inputWithIcon">
+    <label style="color: grey">Car type</label>
+    <select [(ngModel)]="searchCar.type" #type (change)="onTypeChange(type.value)" class="select"
+            style="width: 300px; text-align-last:center;">
+      <option *ngFor="let carType of getCarTypes()">{{ carType }}</option>
+    </select>
+    <i class="fa fa-car fa-lg fa-fw" aria-hidden="true" style="margin-top: 32px"></i>
+  </div>
+
+  <div class="inputWithIcon">
+    <label for="model" style="color: grey; margin: 10px 0 0 0">Model</label>
+    <input [(ngModel)]="searchCar.model" #model (keyup)="onModelChange(model.value)" type="text" name="model"
+           id="model" placeholder="Model"
+           style="width: 300px;">
+    <i class="fa fa-car fa-lg fa-fw" aria-hidden="true" style="margin-top: 37px"></i>
+  </div>
+
+  <div class="inputWithIcon">
+    <label style="color: grey">Gear</label>
+    <select [(ngModel)]="searchCar.gear" #gear (change)="onGearChange(gear.value)" class="select" style="width: 300px;
+     text-align-last:center;">
+      <option *ngFor="let gear of getGearOptions()">{{ gear }}</option>
+    </select>
+    <i class="fa fa-cogs fa-lg fa-fw" aria-hidden="true" style="margin-top: 32px"></i>
+  </div>
+
+  <div class="inputWithIcon">
+    <label for="manufactureDate" style="color: grey; margin: 10px 0 0 0">Manufacture date</label>
+    <input [(ngModel)]="searchCar.manufactureDate" #manufactureDate
+           (change)="onManufactureDateChange(manufactureDate.value)" type="date" name="manufactureDate"
+           id="manufactureDate" placeholder="Returning date" style="width: 300px;">
+    <i class="fa fa-calendar fa-lg fa-fw" aria-hidden="true" style="margin-top: 37px"></i>
+  </div>
+
+</div>

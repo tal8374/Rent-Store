@@ -1,0 +1,71 @@
+<div class="card" >
+  <div class="card-header">
+    <h2 style="text-align: center">
+      Rent A Car
+    </h2>
+  </div>
+  <div class="card-body" style="text-align: center">
+    <form #f="ngForm">
+      <div class="form-group">
+
+        <div class="row">
+          <div class="col mid-5 inputWithIcon">
+            <label for="freeSearch">Free search</label>
+            <input id="freeSearch" #freeSearch="ngModel" name="freeSearch"
+                   [(ngModel)]="searchCar.freeSearch"
+                   type="text"
+                   class="form-control">
+            <i class="fa fa-search fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col mid-5 inputWithIcon">
+            <label for="startDate">Start date</label>
+            <input id="startDate" #startDate="ngModel" name="startDate"
+                   [(ngModel)]="searchCar.beginningDate"
+                   type="date" class="form-control"
+            >
+            <i class="fa fa-calendar-check-o fa-lg " aria-hidden="true" style="left: 16px; top: 35px;"></i>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col mid-5 inputWithIcon">
+            <label for="returnDate">Return Date</label>
+            <input id="returnDate" #returnDate="ngModel" name="returnDate"
+                   [(ngModel)]="searchCar.returningDate"
+                   type="date" class="form-control"
+            >
+            <i class="fa fa-calendar-check-o fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col mid-5 inputWithIcon">
+            <label>Manufacture</label>
+            <select id="branch" #branch="ngModel" name="branch"
+                    [(ngModel)]="searchCar.manufacturer" class="select"
+                    style="width: 230px; height: 35px; text-align-last:center;">
+              <option *ngFor="let manufacturer of getManufacturers()">{{ manufacturer }}</option>
+            </select>
+            <i class="fa fa-users fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col mid-5 inputWithIcon">
+            <label for="model">Model</label>
+            <input id="model" #model="ngModel" name="model" [(ngModel)]="searchCar.model" type="text"
+                   class="form-control">
+            <i class="fa fa-car fa-lg" aria-hidden="true" style="left: 16px; top: 35px;"></i>
+          </div>
+        </div>
+      </div>
+      <button
+        [disabled]="!f.valid"
+        (click)="onSearchClicked()"
+        class="btn btn-secondary btn-block">
+        <i class="fa fa-search-plus fa-lg" aria-hidden="true" style="left: -34px; top: 35px;"></i>
+        Search
+      </button>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,9 @@
+<div class="card container" style="margin-top: 20px">
+  <div class="card-header" style="margin-left: -17px; width: 1140px">
+    <h1 style="text-align: center">My Orders</h1>
+  </div>
+  <div class="card-body" style="text-align: center">
+    <user-orders-search (onSearchCarChange)="onSearchChange($event)"></user-orders-search>
+    <user-order-cars #userOrderCars [searchCar]="searchCar"></user-order-cars>
+  </div>
+</div>
