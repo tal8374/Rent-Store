@@ -29,7 +29,6 @@ function get(payload, callback) {
         .populate('cars')
         .exec()
         .then((branch) => {
-            console.log(branch)
             payload.branch = branch;
             callback(null, payload);
         })

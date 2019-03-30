@@ -1,18 +1,17 @@
-const carRentActionService = require('../services/rent.service');
+const bicycleService = require('../services/bicycle.service');
 const async = require('async');
 
-function create(req, res) {
+function list(req, res) {
     async.waterfall([
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.create
+        bicycleService.list
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
-        } else {
-            res.send({responseData: payload.car});
         }
+        res.send({responseData: payload.bicycles});
     });
 }
 
@@ -21,13 +20,26 @@ function get(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.get
+        bicycleService.get
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
-        } else {
-            res.send({responseData: payload.carRent});
         }
+        res.send({responseData: payload.bicycle});
+    });
+}
+
+function create(req, res) {
+    async.waterfall([
+        function (callback) {
+            callback(null, {req: req});
+        },
+        bicycleService.create
+    ], function (err, payload) {
+        if (err) {
+            res.send({backendErrorData:{mongoDBError: err}})
+        }
+        res.send({responseData: payload.newBicycle});
     });
 }
 
@@ -36,12 +48,12 @@ function remove(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.remove
+        bicycleService.remove
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
         }
-        res.send({responseData: payload.removedCarRent});
+        res.send({responseData: payload.removedBicycle});
     });
 }
 
@@ -50,22 +62,23 @@ function update(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.update
+        bicycleService.update
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
-        } else {
-            res.send({responseData: payload.updatedCarRent});
         }
+        res.send({responseData: payload.updatedBicycle});
     });
 }
 
 module.exports = {
+    list,
+
+    get,
+
     create,
 
     remove,
 
-    get,
-
-    update,
+    update
 };

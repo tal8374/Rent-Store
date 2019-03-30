@@ -1,18 +1,17 @@
-const carRentActionService = require('../services/rent.service');
+const bookService = require('../services/book.service');
 const async = require('async');
 
-function create(req, res) {
+function list(req, res) {
     async.waterfall([
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.create
+        bookService.list
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
-        } else {
-            res.send({responseData: payload.car});
         }
+        res.send({responseData: payload.books});
     });
 }
 
@@ -21,13 +20,26 @@ function get(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.get
+        bookService.get
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
-        } else {
-            res.send({responseData: payload.carRent});
         }
+        res.send({responseData: payload.book});
+    });
+}
+
+function create(req, res) {
+    async.waterfall([
+        function (callback) {
+            callback(null, {req: req});
+        },
+        bookService.create
+    ], function (err, payload) {
+        if (err) {
+            res.send({backendErrorData:{mongoDBError: err}})
+        }
+        res.send({responseData: payload.newBook});
     });
 }
 
@@ -36,12 +48,12 @@ function remove(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.remove
+        bookService.remove
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
         }
-        res.send({responseData: payload.removedCarRent});
+        res.send({responseData: payload.removedBook});
     });
 }
 
@@ -50,22 +62,23 @@ function update(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.update
+        bookService.update
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
-        } else {
-            res.send({responseData: payload.updatedCarRent});
         }
+        res.send({responseData: payload.updatedBook});
     });
 }
 
 module.exports = {
+    list,
+
+    get,
+
     create,
 
     remove,
 
-    get,
-
-    update,
+    update
 };

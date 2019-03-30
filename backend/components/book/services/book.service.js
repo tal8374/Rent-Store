@@ -1,16 +1,16 @@
-const Car = require("../models/car.model");
+const Book = require("../models/book.model");
 const async = require('async');
 
 function list(payload, callback) {
-    Car.CarModel
+    Book.BookModel
         .find({})
         .populate({
             path: 'rents',
             model: 'Rent'
         })
         .exec()
-        .then((cars) => {
-            payload.cars = cars;
+        .then((books) => {
+            payload.books = books;
             callback(null, payload);
         })
         .catch((err) => {
@@ -19,18 +19,17 @@ function list(payload, callback) {
 }
 
 function get(payload, callback) {
-    const query = Object.assign(payload.query ? payload.query : {},
-        {_id: payload.req.params.carId, ...payload.req.query});
+    const query = {_id: payload.req.params.bookId, ...payload.req.query};
 
-    Car.CarModel
+    Book.BookModel
         .findOne(query)
         .populate({
             path: 'rents',
             model: 'Rent'
         })
         .exec()
-        .then((car) => {
-            payload.car = car;
+        .then((book) => {
+            payload.book = book;
             callback(null, payload);
         })
         .catch((err) => {
@@ -39,12 +38,12 @@ function get(payload, callback) {
 }
 
 function create(payload, callback) {
-    const newCar = new Car.CarModel(payload.req.body);
+    const newBook = new Book.BookModel(payload.req.body);
 
-    newCar
+    newBook
         .save()
-        .then((newCar) => {
-            payload.newCar = newCar;
+        .then((newBook) => {
+            payload.newBook = newBook;
             callback(null, payload);
         })
         .catch((err) => {
@@ -53,11 +52,11 @@ function create(payload, callback) {
 }
 
 function remove(payload, callback) {
-    Car.CarModel
-        .remove({_id: payload.req.params.carId})
+    Book.BookModel
+        .remove({_id: payload.req.params.bookId})
         .exec()
-        .then((removedCar) => {
-            payload.removedCar = removedCar;
+        .then((removedBook) => {
+            payload.removedBook = removedBook;
             callback(null, payload);
         })
         .catch((err) => {
@@ -66,11 +65,11 @@ function remove(payload, callback) {
 }
 
 function update(payload, callback) {
-    Car.CarModel
-        .findByIdAndUpdate({_id: payload.req.params.carId}, payload.req.body)
+    Book.BookModel
+        .findByIdAndUpdate({_id: payload.req.params.bookId}, payload.req.body)
         .exec()
-        .then((updatedCar) => {
-            payload.updatedCar = updatedCar;
+        .then((updatedBook) => {
+            payload.updatedBook = updatedBook;
             callback(null, payload);
         })
         .catch((err) => {

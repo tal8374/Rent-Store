@@ -1,4 +1,4 @@
-const carRentActionService = require('../services/rent.service');
+const bookRentService = require('../services/rent.service');
 const async = require('async');
 
 function create(req, res) {
@@ -6,12 +6,12 @@ function create(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.create
+        bookRentService.create
     ], function (err, payload) {
         if (err) {
-            res.send({backendErrorData:{mongoDBError: err}})
+            res.send({backendErrorData: {mongoDBError: err}})
         } else {
-            res.send({responseData: payload.car});
+            res.send({responseData: payload.book});
         }
     });
 }
@@ -21,12 +21,12 @@ function get(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.get
+        bookRentService.get
     ], function (err, payload) {
         if (err) {
-            res.send({backendErrorData:{mongoDBError: err}})
+            res.send({backendErrorData: {mongoDBError: err}})
         } else {
-            res.send({responseData: payload.carRent});
+            res.send({responseData: payload.bookRent});
         }
     });
 }
@@ -36,12 +36,12 @@ function remove(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.remove
+        bookRentService.remove
     ], function (err, payload) {
         if (err) {
-            res.send({backendErrorData:{mongoDBError: err}})
+            res.send({backendErrorData: {mongoDBError: err}})
         }
-        res.send({responseData: payload.removedCarRent});
+        res.send({responseData: payload.removedRent});
     });
 }
 
@@ -50,12 +50,12 @@ function update(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        carRentActionService.update
+        bookRentService.update
     ], function (err, payload) {
         if (err) {
-            res.send({backendErrorData:{mongoDBError: err}})
+            res.send({backendErrorData: {mongoDBError: err}})
         } else {
-            res.send({responseData: payload.updatedCarRent});
+            res.send({responseData: payload.updatedRent});
         }
     });
 }

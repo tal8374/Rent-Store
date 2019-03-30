@@ -36,7 +36,6 @@ function get(payload, callback) {
             callback(null, payload);
         })
         .catch((err) => {
-            console.log(err)
             callback(err);
         });
 }
@@ -59,9 +58,6 @@ function update(payload, callback) {
         .findByIdAndUpdate({_id: payload.req.params.userId}, payload.req.body)
         .exec()
         .then((updatedUser) => {
-
-            console.log(payload.req.params.userId)
-
             payload.updatedUser = updatedUser;
             callback(null, payload);
         })

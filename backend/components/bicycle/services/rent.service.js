@@ -1,23 +1,24 @@
-const carService = require('./car.service');
+const bicycleService = require('./bicycle.service');
+const Bicycle = require('../models/bicycle.model');
 const Rent = require('../../rent/models/rent.model');
 const async = require('async');
 const _ = require('lodash');
 
-function createSearchCarQuery(payload, callback) {
-    payload.query = {_id: payload.req.params.carId};
+function createSearchBicycleQuery(payload, callback) {
+    payload.query = {_id: payload.req.params.bicycleId};
 
     callback(null, payload);
 }
 
-function createCarRent(payload, callback) {
-    const car = payload.car;
+function createBicycleRent(payload, callback) {
+    const bicycle = payload.bicycle;
 
-    car.rents.push(payload.newRent);
+    bicycle.rents.push(payload.newRent);
 
-    car
+    bicycle
         .save()
-        .then((car) => {
-            payload.car = car;
+        .then((bicycle) => {
+            payload.bicycle = bicycle;
 
             callback(null, payload);
         })
@@ -28,6 +29,8 @@ function createCarRent(payload, callback) {
 
 function createRent(payload, callback) {
     const newRent = new Rent.RentModel(payload.req.body);
+
+    console.log('here')
 
     return newRent
         .save()
@@ -45,10 +48,10 @@ function create(payload, callback) {
         function (callback) {
             callback(null, payload);
         },
-        createSearchCarQuery,
-        carService.get,
+        createSearchBicycleQuery,
+        bicycleService.get,
         createRent,
-        createCarRent
+        createBicycleRent
     ], function (err, result) {
         if (err) {
             callback(err)
@@ -60,11 +63,11 @@ function create(payload, callback) {
 
 function remove(payload, callback) {
     Rent.RentModel
-        .remove({_id: payload.req.params.rentId}, function (err, removedCarRent) {
+        .remove({_id: payload.req.params.rentId}, function (err, removedRent) {
             if (err) {
                 callback(err)
             } else {
-                payload.removedCarRent = removedCarRent;
+                payload.removedRent = removedRent;
                 callback(null, payload);
             }
         });
@@ -73,8 +76,8 @@ function remove(payload, callback) {
 function get(payload, callback) {
     Rent.RentModel
         .findOne({_id: payload.req.params.rentId})
-        .then((carRent) => {
-            payload.carRent = carRent;
+        .then((bicycleRent) => {
+            payload.bicycleRent = bicycleRent;
 
             callback(null, payload);
         })
@@ -84,13 +87,14 @@ function get(payload, callback) {
 }
 
 function update(payload, callback) {
+
     Rent.RentModel
         .update({_id: payload.req.params.rentId},
-            payload.req.body, function (err, updatedCarRent) {
+            payload.req.body, function (err, updatedRent) {
                 if (err) {
                     callback(err)
                 } else {
-                    payload.updatedCarRent = updatedCarRent;
+                    payload.updatedRent = updatedRent;
                     callback(null, payload);
                 }
             });
