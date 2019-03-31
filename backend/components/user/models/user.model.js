@@ -15,7 +15,7 @@ const UserSchema = new Schema({
     password: {type: Schema.Types.String},
     role: {type: Array, default: ['user']},
     image: {type: Schema.Types.String},
-    package: {type: userPackage.PackageSchema},
+    package: {type: userPackage.PackageSchema, default: userPackage.PackageSchema},
     givenRentals: [{type: Schema.Types.ObjectId, ref: 'Rent'}],
     receivedRentals: [{type: Schema.Types.ObjectId, ref: 'Rent'}],
 });

@@ -1,7 +1,7 @@
 const User = require("../models/user.model");
 
 function list(payload, callback) {
-    return User.UserModel
+    User.UserModel
         .find({})
         .exec()
         .then((users) => {
