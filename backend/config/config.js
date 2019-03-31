@@ -3,5 +3,5 @@ module.exports = {
     routesDirectory: "routes",
     configFile: "config",
     configDirectory: "config",
-    mongooseLocalURL: 'mongodb://localhost:27017/car-rent',
+    mongooseLocalURL: 'mongodb://localhost:27017/rent-store',
 };

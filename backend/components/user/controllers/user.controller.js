@@ -10,8 +10,9 @@ function list(req, res) {
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
+        } else {
+            res.send({responseData: payload.users});
         }
-        res.send({responseData: payload.users});
     });
 }
 
@@ -24,8 +25,9 @@ function get(req, res) {
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
+        } else {
+            res.send({responseData: payload.user});
         }
-        res.send({responseData: payload.user});
     });
 }
 
@@ -38,8 +40,9 @@ function create(req, res) {
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
+        } else {
+            res.send({responseData: payload.newUser})
         }
-        res.send({responseData: payload.user})
     });
 }
 
@@ -53,8 +56,9 @@ async function remove(req, res) {
 
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
+        } else {
+            res.send({responseData: payload.removedUser});
         }
-        res.send({responseData: payload.removedUser});
     });
 }
 
@@ -67,8 +71,9 @@ function update(req, res) {
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
+        } else {
+            res.send({responseData: payload.updatedUser});
         }
-        res.send({responseData: payload.updatedUser});
     });
 }
 

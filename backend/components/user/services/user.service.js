@@ -16,7 +16,7 @@ function list(payload, callback) {
 function create(payload, callback) {
     const newUser = new User.UserModel(payload.req.body);
 
-    return newUser
+    newUser
         .save()
         .then((newUser) => {
             payload.newUser = newUser;
@@ -41,7 +41,7 @@ function get(payload, callback) {
 }
 
 function remove(payload, callback) {
-    return User.UserModel
+    User.UserModel
         .remove({_id: payload.req.params.userId})
         .exec()
         .then((removedUser) => {
@@ -54,7 +54,7 @@ function remove(payload, callback) {
 }
 
 function update(payload, callback) {
-    return User.UserModel
+    User.UserModel
         .findByIdAndUpdate({_id: payload.req.params.userId}, payload.req.body)
         .exec()
         .then((updatedUser) => {

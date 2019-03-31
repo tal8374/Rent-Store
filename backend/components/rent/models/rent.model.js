@@ -7,9 +7,6 @@ const RentSchema = new Schema({
     actualReturnDate: {type: Schema.Types.Date},
     cancellationPolicy: {type: Schema.Types.String},
     lateReturnPolicy: {type: Schema.Types.String},
-    requestByUser: {type: Schema.Types.ObjectId, ref: 'User'},
-    givenByUser: {type: Schema.Types.ObjectId, ref: 'User'},
-    givenByBranch: {type: Schema.Types.ObjectId, ref: 'Branch'},
     dailyCost: {type: Schema.Types.Number},
     lateReturnFee: {type: Schema.Types.Number},
 });
