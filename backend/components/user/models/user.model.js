@@ -18,6 +18,7 @@ const UserSchema = new Schema({
     package: {type: userPackage.PackageSchema, default: userPackage.PackageSchema},
     givenRentals: [{type: Schema.Types.ObjectId, ref: 'Rent'}],
     receivedRentals: [{type: Schema.Types.ObjectId, ref: 'Rent'}],
+    trades: [{type: Schema.Types.ObjectId, ref: 'Trade'}],
 });
 
 module.exports = {

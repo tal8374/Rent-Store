@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const RentSchema = new Schema({
-    startDate: {type: Schema.Types.Date, default: Date.now()},
+    createdAt: {type: Schema.Types.Date, default: Date.now()},
+    startDate: {type: Schema.Types.Date},
     returnDate: {type: Schema.Types.Date},
     actualReturnDate: {type: Schema.Types.Date},
     cancellationPolicy: {type: Schema.Types.String},
