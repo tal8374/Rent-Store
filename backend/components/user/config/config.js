@@ -7,4 +7,10 @@ module.exports = {
             moduleName: 'user'
         }
     },
+    rent: {
+        dependency: {
+            routeName: 'user',
+            moduleName: 'user'
+        }
+    },
 };
