@@ -1,4 +1,4 @@
-const locationService = require('../services/location.service');
+const rateService = require('../services/rate.service');
 const async = require('async');
 
 function create(req, res) {
@@ -6,12 +6,12 @@ function create(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        locationService.create
+        rateService.create
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
         }
-        res.send({responseData: payload.newLocation});
+        res.send({responseData: payload.newRate});
     });
 }
 
@@ -20,12 +20,12 @@ function remove(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        locationService.remove
+        rateService.remove
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
         }
-        res.send({responseData: payload.removedLocation});
+        res.send({responseData: payload.branch});
     });
 }
 
@@ -34,26 +34,12 @@ function update(req, res) {
         function (callback) {
             callback(null, {req: req});
         },
-        locationService.update
+        rateService.update
     ], function (err, payload) {
         if (err) {
             res.send({backendErrorData:{mongoDBError: err}})
         }
-        res.send({responseData: payload.updatedLocation});
-    });
-}
-
-function get(req, res) {
-    async.waterfall([
-        function (callback) {
-            callback(null, {req: req});
-        },
-        locationService.get
-    ], function (err, payload) {
-        if (err) {
-            res.send({backendErrorData:{mongoDBError: err}})
-        }
-        res.send({responseData: payload.location});
+        res.send({responseData: payload.updatedRate});
     });
 }
 
@@ -62,7 +48,5 @@ module.exports = {
 
     remove,
 
-    update,
-
-    get,
+    update
 };

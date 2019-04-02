@@ -27,6 +27,8 @@ function get(payload, callback) {
     Branch.BranchModel
         .findOne(query)
         .populate('cars')
+        .populate('rates')
+        .populate('views')
         .exec()
         .then((branch) => {
             payload.branch = branch;
@@ -38,10 +40,10 @@ function get(payload, callback) {
 }
 
 
-function createBranch(payload, callback) {
+function create(payload, callback) {
     const newBranch = new Branch.BranchModel(payload.req.body);
 
-    return newBranch
+    newBranch
         .save()
         .then((newBranch) => {
             payload.newBranch = newBranch;
@@ -50,27 +52,11 @@ function createBranch(payload, callback) {
         .catch((err) => {
             callback(err);
         });
-
-}
-
-function create(payload, callback) {
-    async.waterfall([
-        function (callback) {
-            callback(null, payload);
-        },
-        createBranch
-    ], function (err, result) {
-        if (err) {
-            callback(err)
-        }
-
-        callback(null, payload);
-    });
 }
 
 function remove(payload, callback) {
     Branch.BranchModel
-        .remove({_id: payload.req.params.branchId})
+        .findByIdAndRemove({_id: payload.req.params.branchId})
         .exec()
         .then((removedBranch) => {
             payload.removedBranch = removedBranch;

@@ -1,7 +1,4 @@
-const Car = require("../../car/models/car.model");
 const Branch = require("../models/branch.model");
-const branchService = require('./branch.service');
-const async = require('async');
 
 function create(payload, callback) {
     Branch.BranchModel

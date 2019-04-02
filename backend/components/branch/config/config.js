@@ -7,7 +7,13 @@ module.exports = {
             moduleName: 'branch'
         }
     },
-    location: {
+    rate: {
+        dependency: {
+            routeName: 'branch',
+            moduleName: 'branch'
+        }
+    },
+    view: {
         dependency: {
             routeName: 'branch',
             moduleName: 'branch'
