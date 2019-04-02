@@ -10,6 +10,7 @@ const BranchSchema = new Schema({
     package: [{type: branchPackage.PackageSchema}],
     rates: [{type: Schema.Types.ObjectId, ref: 'Rate'}],
     views: [{type: Schema.Types.ObjectId, ref: 'View'}],
+    givenRentals: [{type: Schema.Types.ObjectId, ref: 'Rent'}],
 });
 
 module.exports = {

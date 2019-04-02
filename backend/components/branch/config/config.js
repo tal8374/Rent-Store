@@ -19,4 +19,10 @@ module.exports = {
             moduleName: 'branch'
         }
     },
+    rent: {
+        dependency: {
+            routeName: 'branch',
+            moduleName: 'branch'
+        }
+    },
 };
