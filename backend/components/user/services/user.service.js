@@ -30,6 +30,9 @@ function create(payload, callback) {
 function get(payload, callback) {
     User.UserModel
         .findOne({_id: payload.req.params.userId})
+        .populate('trades')
+        .populate('views')
+        .populate('rates')
         .exec()
         .then((user) => {
             payload.user = user;

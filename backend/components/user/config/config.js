@@ -13,4 +13,16 @@ module.exports = {
             moduleName: 'user'
         }
     },
+    rate: {
+        dependency: {
+            routeName: 'user',
+            moduleName: 'user'
+        }
+    },
+    view: {
+        dependency: {
+            routeName: 'user',
+            moduleName: 'user'
+        }
+    },
 };

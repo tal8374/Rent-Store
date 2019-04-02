@@ -19,6 +19,8 @@ const UserSchema = new Schema({
     givenRentals: [{type: Schema.Types.ObjectId, ref: 'Rent'}],
     receivedRentals: [{type: Schema.Types.ObjectId, ref: 'Rent'}],
     trades: [{type: Schema.Types.ObjectId, ref: 'Trade'}],
+    rates: [{type: Schema.Types.ObjectId, ref: 'Rate'}],
+    views: [{type: Schema.Types.ObjectId, ref: 'View'}],
 });
 
 module.exports = {
