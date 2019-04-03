@@ -22,8 +22,6 @@ function list(payload, callback) {
 function createTrade(payload, callback) {
     const newTrade = new Trade.TradeModel(payload.req.body);
 
-    newTrade.withPackage = payload.req.body.withPackage;
-
     newTrade
         .save()
         .then((newTrade) => {
@@ -31,6 +29,7 @@ function createTrade(payload, callback) {
             callback(null, payload);
         })
         .catch((err) => {
+            console.log(err)
             callback(err);
         });
 }
@@ -62,6 +61,8 @@ function addToForUserTrades(payload, callback) {
 }
 
 function setCarWithPackageItemsTraded(payload, callback) {
+    console.log(payload.newTrade)
+
     Car.CarModel.updateMany(
         {_id: {$in: payload.newTrade.withPackage.cars}},
         {$push: {trades: payload.newTrade._id}},
@@ -378,8 +379,8 @@ function update(payload, callback) {
     Trade.TradeModel
         .findByIdAndUpdate({_id: payload.req.params.tradeId}, payload.req.body)
         .exec()
-        .then((updatedUser) => {
-            payload.updatedUser = updatedUser;
+        .then((updatedTrade) => {
+            payload.updatedTrade = updatedTrade;
             callback(null, payload);
         })
         .catch((err) => {
