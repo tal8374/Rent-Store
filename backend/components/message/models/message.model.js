@@ -6,7 +6,6 @@ const MessageSchema = new Schema({
     forUser: {type: Schema.Types.ObjectId, ref: 'User'},
     byBranch: {type: Schema.Types.ObjectId, ref: 'Branch'},
     forBranch: {type: Schema.Types.ObjectId, ref: 'Branch'},
-    createdAt: {type: Schema.Types.Date, default: Date.now()},
     readAt: {type: Schema.Types.Date},
     content: {type: Schema.Types.String},
 });

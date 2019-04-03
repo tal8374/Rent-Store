@@ -30,8 +30,6 @@ function createBicycleRent(payload, callback) {
 function createRent(payload, callback) {
     const newRent = new Rent.RentModel(payload.req.body);
 
-    console.log('here')
-
     return newRent
         .save()
         .then((newRent) => {

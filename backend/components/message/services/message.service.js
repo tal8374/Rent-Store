@@ -3,7 +3,6 @@ const Message = require("../models/message.model");
 function list(payload, callback) {
     Message.MessageModel
         .find({$or: [payload.req.query]})
-        .sort('-createdAt')
         .populate('byBranch')
         .populate('forBranch')
         .populate('byUser')

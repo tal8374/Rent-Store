@@ -14,6 +14,7 @@ const BicycleSchema = new Schema({
     size: {type: Schema.Types.String},
     image: {type: Schema.Types.String},
     rents: [{type: Schema.Types.ObjectId, ref: 'Rent'}],
+    trades: [{type: Schema.Types.ObjectId, ref: 'Trade'}],
 });
 
 module.exports = {

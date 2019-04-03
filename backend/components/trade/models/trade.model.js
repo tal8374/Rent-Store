@@ -3,18 +3,20 @@ const Schema = mongoose.Schema;
 
 const Cancellation = require('../../cancellation/models/cancellation.model');
 const Payment = require('../../payment/models/payment.model');
+const tradePackage = require('../../package/models/package.model');
 
 const TradeSchema = new Schema({
-    createdAt: {type: Schema.Types.Date, default: Date.now()},
     byUser: {type: Schema.Types.ObjectId, ref: 'User'},
+    byUserPayment: {type: Payment.PaymentSchema},
     forUser: {type: Schema.Types.ObjectId, ref: 'User'},
-    withPackage: {type: Schema.Types.ObjectId, ref: 'Package'},
-    withPayment: {type: Payment.PaymentSchema},
-    forPackage: {type: Schema.Types.ObjectId, ref: 'Package'},
-    forPayment: {type: Payment.PaymentSchema},
+    withPackage: {type: tradePackage.PackageSchema, default: tradePackage.PackageSchema},
+    forPackage: {type: tradePackage.PackageSchema, default: tradePackage.PackageSchema},
     cancellation: {type: Cancellation.CancellationSchema},
-    isAcceptedBy: {type: Schema.Types.Boolean},
     isAcceptedFor: {type: Schema.Types.Boolean},
+    acceptedDate: {type: Schema.Types.Date},
+    startDate: {type: Schema.Types.Date},
+    returnDate: {type: Schema.Types.Date},
+    actualReturnDate: {type: Schema.Types.Date},
 });
 
 module.exports = {

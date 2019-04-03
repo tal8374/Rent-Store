@@ -14,6 +14,7 @@ const CarSchema = new Schema({
     isProperForRent: {type: Schema.Types.Boolean, default: true},
     isAvailableForRent: {type: Schema.Types.Boolean, default: true},
     rents: [{type: Schema.Types.ObjectId, ref: 'Rent'}],
+    trades: [{type: Schema.Types.ObjectId, ref: 'Trade'}],
 });
 
 module.exports = {
