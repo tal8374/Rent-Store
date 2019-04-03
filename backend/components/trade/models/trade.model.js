@@ -19,6 +19,12 @@ const TradeSchema = new Schema({
     actualReturnDate: {type: Schema.Types.Date},
 });
 
+TradeSchema
+    .virtual('isTradeDone')
+    .get(function () {
+        return this.actualReturnDate !== null;
+    });
+
 module.exports = {
     TradeSchema: TradeSchema,
     TradeModel: mongoose.model('Trade', TradeSchema)
