@@ -25,4 +25,10 @@ module.exports = {
             moduleName: 'user'
         }
     },
+    cart: {
+        dependency: {
+            routeName: 'user',
+            moduleName: 'user'
+        }
+    },
 };

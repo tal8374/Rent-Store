@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userPackage = require('../../package/models/package.model');
+const Cart = require('./cart.model');
 
 const UserSchema = new Schema({
     firstName: {type: Schema.Types.String},
@@ -21,6 +22,7 @@ const UserSchema = new Schema({
     trades: [{type: Schema.Types.ObjectId, ref: 'Trade'}],
     rates: [{type: Schema.Types.ObjectId, ref: 'Rate'}],
     views: [{type: Schema.Types.ObjectId, ref: 'View'}],
+    cart: {type: Cart.CartSchema, default: Cart.CartSchema},
 });
 
 module.exports = {
